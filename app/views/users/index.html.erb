@@ -1,0 +1,7 @@
+<div class="container">
+	<h1>会員一覧</h1>
+
+	<% @users.each do |user| %>
+		<p><%=link_to "#{user.name}", user %></p>
+	<% end %>
+</div>
