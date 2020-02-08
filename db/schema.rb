@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_041852) do
+ActiveRecord::Schema.define(version: 2020_02_06_085139) do
+
+  create_table "scorings", force: :cascade do |t|
+    t.integer "exercise_result", default: 0
+    t.boolean "meal_result", default: false
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

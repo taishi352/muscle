@@ -1,3 +1,17 @@
 <div class="container">
 	<h1>会員詳細</h1>
+
+	<%= month_calendar events: @scorings do |date, scorings| %>
+  		<%= date %>
+
+	  <% scorings.each do |scoring| %>
+	    <div>
+	      <p>トレーニング</p>
+	      <%= link_to "#{scoring.exercise_result}", edit_scoring_path(scoring.id) %>
+	      <p>食事:<%= scoring.meal_result_str %></p>
+	    </div>
+	  <% end %>
+	<% end %>
+
+	<%= link_to 'new', new_scoring_path %>
 </div>

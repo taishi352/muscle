@@ -4,5 +4,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@scorings = Scoring.all
 	end
 end
