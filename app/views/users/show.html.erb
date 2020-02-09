@@ -6,12 +6,12 @@
 
 	  <% scorings.each do |scoring| %>
 	    <div>
-	      <p>トレーニング</p>
+	      <p>トレーニング目標</p>
 	      <%= link_to "#{scoring.exercise_result}", edit_scoring_path(scoring.id) %>
-	      <p>食事:<%= scoring.meal_result_str %></p>
+	      <p>食事目標:<%= scoring.meal_result_str %></p>
 	    </div>
 	  <% end %>
 	<% end %>
 
-	<%= link_to 'new', new_scoring_path %>
+
 </div>

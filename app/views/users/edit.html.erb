@@ -1,0 +1,35 @@
+<div class="container">
+	<h1>会員編集画面</h1>
+
+	<%= form_for(@user) do |f| %>
+		<div class="field">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: "name" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :image %>
+			<%= f.attachment_field :profile_image, class: "user_image" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :introduction %>
+			<%= f.text_area :introduction, class: "introduction" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :exercise_rule %>
+			<%= f.text_area :exercise_rule, class: "exercise_rule" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :meal_rule %>
+			<%= f.text_area :meal_rule, class: "meal_rule" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :penalty %>
+			<%= f.text_area :penalty, class: "penalty" %>
+		</div>
+	<% end %>
+</div>
