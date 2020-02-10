@@ -2,6 +2,7 @@
 	<h1>会員一覧</h1>
 
 	<% @users.each do |user| %>
+		<%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
 		<p><%=link_to "#{user.name}", user %></p>
 	<% end %>
 </div>

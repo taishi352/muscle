@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_085139) do
+ActiveRecord::Schema.define(version: 2020_02_09_094654) do
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "user_id"
+    t.string "title"
+    t.text "body"
+    t.string "post_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "scorings", force: :cascade do |t|
     t.integer "exercise_result", default: 0
