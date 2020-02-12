@@ -6,12 +6,14 @@
 
 	  <% scorings.each do |scoring| %>
 	    <div>
-	      <p>トレーニング目標</p>
-	      <%= link_to "#{scoring.exercise_result}", edit_scoring_path(scoring.id) %>
-	      <p>食事目標:<%= scoring.meal_result_str %></p>
+	      <p>トレーニング目標<%= link_to "★:#{scoring.exercise_result}つ", edit_scoring_path(scoring.id) %></p>
+	      
+	      <p>食事目標</p>
+	      <%= link_to "#{scoring.meal_result_str}", edit_scoring_path(scoring.id) %>
 	    </div>
 	  <% end %>
 	<% end %>
 
-
+	<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result) %>
+	<%= pie_chart current_user.scorings.group(:meal_result).count %>
 </div>

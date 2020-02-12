@@ -26,6 +26,10 @@ class UsersController < ApplicationController
 		@scorings = current_user.scorings
 		@scoring = Scoring.new
 		@user = User.find(params[:id])
+
+		start_month = 1.months.ago.all_month.first
+		end_month = Time.current
+		@chart = current_user.scorings.where(start_time: start_month..end_month)
 	end
 
 	def edit

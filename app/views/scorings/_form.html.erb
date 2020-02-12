@@ -2,17 +2,12 @@
 
   <div class="field">
     <%= f.label :exercise_result %>
-    <%= f.select :exercise_result, Scoring.exercise_results.keys.map { |k| [k, k] } %>
+    <%= f.number_field :exercise_result %>
   </div>
 
   <div class="field">
     <%= f.label :meal_result %>
     <%= f.check_box :meal_result %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start_time %>
-    <%= f.datetime_select :start_time %>
   </div>
 
   <div class="actions">
