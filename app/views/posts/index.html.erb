@@ -16,6 +16,7 @@
 						<th>User</th>
 						<th>Title</th>
 						<th>Genre</th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -28,6 +29,23 @@
 							</td>
 							<td><%= link_to post.title, post %></td>
 							<td><%= post.genre.genre_name %></td>
+							<td>
+								<% if post.favorited_by?(current_user) %>
+									<td>
+										<%= link_to post_favorites_path(post), method: :delete do %>
+											<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+											<%= post.favorites.count %>
+										<% end %>
+									</td>
+								<% else %>
+									<td>
+										<%= link_to post_favorites_path(post), method: :post do %>
+											<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+											<%= post.favorites.count %>
+										<% end %>
+									</td>
+								<% end %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>
