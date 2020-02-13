@@ -73,3 +73,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
 gem 'simple_calendar', '~> 2.0' #カレンダー機能
+gem 'font-awesome-sass', '~> 5.4.1'

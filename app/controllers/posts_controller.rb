@@ -1,6 +1,21 @@
 class PostsController < ApplicationController
 	def index
 		@posts = Post.all
+
+		@genres = Genre.all
+	    # urlにgenre_id(params)がある場合
+	    if params[:genre_id]
+	      # genreのデータベースのテーブルから一致するidを取得
+	      @genre = Genre.find(params[:genre_id])
+	      # genre_idと紐づく投稿を取得
+	      @posts = @genre.posts.order(created_at: :asc).reverse_order
+	      @count = Post.where(genre_id: @genre.id).count
+	    # urlにgenre_id(params)がない場合
+	    else
+	      # 投稿すべてを取得
+	      @posts = Post.order(created_at: :asc).reverse_order
+	      @count = Post.all.count
+	    end
 	end
 	def show
 		@post = Post.find(params[:id])

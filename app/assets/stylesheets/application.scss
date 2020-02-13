@@ -18,9 +18,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
 header {
 	color:white;
-	background-color: #61C359;
+	background-color: #8B0000;
 }
 
 header .navbar-left span {
@@ -30,7 +33,7 @@ header .navbar-left span {
 
 body {
 	margin-top: 40px;
-	background-color: #FFECB9;
+	background-color: lightgray;
 }
 
 .actions {

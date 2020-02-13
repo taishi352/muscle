@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 		@scorings = current_user.scorings
 		@scoring = Scoring.new
 		@user = User.find(params[:id])
+		@posts = @user.posts
 
 		start_month = 1.months.ago.all_month.first
 		end_month = Time.current
