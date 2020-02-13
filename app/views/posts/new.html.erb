@@ -1,0 +1,29 @@
+<div class="container">
+	<h1>新規投稿画面</h1>
+
+	<%= form_for(@post) do |f| %>
+		<div class="field">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: "title" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :genre %>
+			<%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+		</div>
+
+		<div class="field">
+			<%= f.label :image %>
+			<%= f.attachment_field :post_image, class: "post_image" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :body %>
+			<%= f.text_field :body, class: "body" %>
+		</div>
+
+		<div class="actions">
+			<%= f.submit %>
+		</div>
+	<% end %>
+</div>

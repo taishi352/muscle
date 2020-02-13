@@ -1,0 +1,72 @@
+<div class="container">
+	<h1>マイページ</h1>
+
+	<div class="row">
+		<div class="col-md-4 text-center">
+			<h3>目標</h3>
+			<%= form_for(@user) do |f| %>
+				<div class="field">
+					<h4>トレーニング目標</h4>
+					<%= f.text_area :exercise_rule, class: "exercise_rule" %>
+				</div>
+
+				<div class="field">
+					<h4>食事目標</h4>
+					<%= f.text_area :meal_rule, class: "meal_rule" %>
+				</div>
+
+				<div class="field">
+					<h4>ペナルティー</h4>
+					<%= f.text_area :penalty, class: "penalty" %>
+				</div>
+
+				<div class="actions">
+					<%= f.submit %>
+				</div>
+			<% end %>
+		</div>
+
+		<div class="col-md-8 text-right">
+			<h3>食事目標達成度チャート</h3>
+			<span>赤:達成　青:未達成</span>
+			<span>(前月月初〜今日まで)</span>
+		<%= pie_chart @chart.group(:meal_result).count, legend: false %>
+		</div>
+	</div>
+
+	<h3>目標トラッカー</h3>
+	<%= month_calendar events: @scorings do |date, scorings| %>
+  		<%= date %>
+
+	  <% scorings.each do |scoring| %>
+	    <div>
+	    	<%= link_to edit_scoring_path(scoring.id) do %>
+			    <p class="fas fa-dumbbell">  ★:<%= scoring.exercise_result %>つ</p><br>
+			    <p class="fas fa-utensils">  <%= scoring.meal_result_str %></p>
+	      	<% end %>
+	    </div>
+	  <% end %>
+	<% end %>
+
+	<h3 class="text-center">トレーニング達成度チャート</h3>
+	<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result) %>
+
+	<h3>投稿一覧</h3>
+	<table class="table table-hover table-inverse">
+		<thead>
+			<tr>
+				<th>タイトル</th>
+				<th>ジャンル</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @posts.each do |post| %>
+				<tr>
+					<td><%= link_to post.title,post %></td>
+					<td><%= post.genre.genre_name %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

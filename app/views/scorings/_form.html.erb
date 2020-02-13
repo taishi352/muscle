@@ -1,0 +1,19 @@
+<%= form_for(@scoring) do |f| %>
+
+  <div class="field">
+    <%= f.label :exercise_result %>
+    <label><%= f.radio_button :exercise_result, 0 %>0</label>
+    <label><%= f.radio_button :exercise_result, 1 %>1</label>
+    <label><%= f.radio_button :exercise_result, 2 %>2</label>
+    <label><%= f.radio_button :exercise_result, 3 %>3</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :meal_result %>
+    <%= f.check_box :meal_result %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

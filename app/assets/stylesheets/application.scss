@@ -10,6 +10,34 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+header {
+	color:white;
+	background-color: #8B0000;
+}
+
+header .navbar-left span {
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+body {
+	margin-top: 40px;
+	background-color: lightgray;
+}
+
+.actions {
+	margin-top:10px;
+}
+
+
