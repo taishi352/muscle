@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@posts = @user.posts
 
-		start_month = 1.months.ago.all_month.first
+		start_month = Time.current.ago(30.days)
 		end_month = Time.current
 		@chart = current_user.scorings.where(start_time: start_month..end_month)
 	end

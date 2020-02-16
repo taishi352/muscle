@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :scorings,only: [:edit, :update]
   resources :posts do
   	resource :favorites, only: [:create, :destroy]
+  	resource :post_comments, only: [:create, :destroy]
   end
 end

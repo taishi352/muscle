@@ -22,8 +22,8 @@
 @import 'font-awesome';
 
 header {
-	color:white;
-	background-color: #8B0000;
+	color: #fbca4d;
+	background-color: #ba2636;
 }
 
 header .navbar-left span {
@@ -33,11 +33,18 @@ header .navbar-left span {
 
 body {
 	margin-top: 40px;
-	background-color: lightgray;
+	background-color: #3f312b;
+	color: white;
+	font-family: "Sawarabi Mincho";
 }
 
 .actions {
 	margin-top:10px;
+}
+
+.btn{
+	background-color: #fbca4d;
+	color: #3f312b;
 }
 
 
