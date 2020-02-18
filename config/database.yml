@@ -22,4 +22,11 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: bookers1_debug
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: rds-mysql-server.cp1uuulu7yq3.ap-northeast-1.rds.amazonaws.com
+  username: root
+  password: 19910502
