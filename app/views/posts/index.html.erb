@@ -13,8 +13,8 @@
 						<th>ユーザー</th>
 						<th>タイトル</th>
 						<th>ジャンル</th>
-						<th></th>
-						<th></th>
+						<th><%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %></th>
+						<<th></th>
 					</tr>
 				</thead>
 
@@ -60,7 +60,7 @@
 				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
 			<% end %>
 
-			<p class="text-center"><%= link_to "新規投稿", new_post_path, class: "btn btn-primary new-button" %></p>
+			<p class="text-center"></p>
 		</div>
 	</div>
 </div>
