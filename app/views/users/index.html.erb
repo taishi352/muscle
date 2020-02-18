@@ -1,17 +1,21 @@
+<div class="jumbotron">
+	<h1 class="text-center">ユーザー一覧</h1>
+</div>
+
 <div class="container">
-	<h1>ユーザー一覧</h1>
 
 	<div class="row">
 		<% @users.each do |user| %>
-			<div class="col-md-4 user_index">
+			<div class="col-md-4">
 				<div class="media">
 					<div class="pull-left"><%= attachment_image_tag user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg", class: "img-circle" %></div>
 					<div class="media-body">
-						<h4 class="media-heading"><%=link_to "#{user.name}", user %></h4>
-						<p><%= user.introduction %></p>
+						<h4 class="media-heading"><%=link_to "名前：#{user.name}", user %></h4>
+						<p>自己紹介<br><%= user.introduction %></p>
 					</div>
 				</div>
 			</div>
 		<% end %>
+		<%= paginate @users, class: "pagination" %>
 	</div>
 </div>

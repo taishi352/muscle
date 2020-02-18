@@ -1,5 +1,6 @@
 class ScoringsController < ApplicationController
-	
+	before_action :authenticate_user!
+
 	def edit
 		@scoring = Scoring.find(params[:id])
 	end

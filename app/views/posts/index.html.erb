@@ -1,5 +1,8 @@
+<div class="jumbotron">
+	<h1 class="text-center">投稿一覧</h1>
+</div>
+
 <div class="container">
-	<h1>ブログ一覧</h1>
 
 	<div class="row">
 
@@ -7,9 +10,9 @@
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
-						<th>User</th>
-						<th>Title</th>
-						<th>Genre</th>
+						<th>ユーザー</th>
+						<th>タイトル</th>
+						<th>ジャンル</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -48,6 +51,7 @@
 					<% end %>
 				</tbody>
 			</table>
+			<%= paginate @all, class: "paginate text-right" %>
 		</div>
 
 		<div class="col-md-2">
@@ -55,6 +59,8 @@
 			<% @genres.each do |genre| %>
 				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
 			<% end %>
+
+			<p class="text-center"><%= link_to "新規投稿", new_post_path, class: "btn btn-primary new-button" %></p>
 		</div>
 	</div>
 </div>

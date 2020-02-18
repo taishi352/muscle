@@ -42,6 +42,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -74,3 +77,5 @@ gem 'jquery-rails'
 
 gem 'simple_calendar', '~> 2.0' #カレンダー機能
 gem 'font-awesome-sass', '~> 5.4.1'
+
+gem 'kaminari','~> 1.1.1'

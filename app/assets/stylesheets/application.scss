@@ -22,29 +22,55 @@
 @import 'font-awesome';
 
 header {
-	color: #fbca4d;
+	color: white;
 	background-color: #ba2636;
 }
 
-header .navbar-left span {
-	font-size: 20px;
-	padding-top: 10px;
-}
 
 body {
 	margin-top: 40px;
 	background-color: #3f312b;
-	color: white;
-	font-family: "Sawarabi Mincho";
+	color: black;
+	font-family: "Sawarabi Gothic";
 }
 
 .actions {
 	margin-top:10px;
 }
 
-.btn{
-	background-color: #fbca4d;
-	color: #3f312b;
+h1 {
+	color: black;
+}
+
+h2{
+	color: white;
+}
+
+h3{
+	color: white;
+}
+
+h4{
+	color: white;
+}
+
+p{
+	color: white;
+}
+
+table{
+	color: white;
 }
 
 
+.row {
+	margin-bottom: 30px;
+}
+
+.navbar-fixed-bottom{
+	background-color: #ba2636;
+}
+
+.img-circle {
+	border: solid 2px white;
+}
