@@ -1,21 +1,20 @@
+<div class="jumbotron">
+	<h1 class="text-center">投稿一覧</h1>
+</div>
+
 <div class="container">
-	<h1>ブログ一覧</h1>
 
 	<div class="row">
-		<div class="col-md-2">
-			<h3>ジャンル検索</h3>
-			<% @genres.each do |genre| %>
-				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
-			<% end %>
-		</div>
 
 		<div class="col-md-10">
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
-						<th>User</th>
-						<th>Title</th>
-						<th>Genre</th>
+						<th>ユーザー</th>
+						<th>タイトル</th>
+						<th>ジャンル</th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -28,10 +27,40 @@
 							</td>
 							<td><%= link_to post.title, post %></td>
 							<td><%= post.genre.genre_name %></td>
+							<td>
+								<% if post.favorited_by?(current_user) %>
+									<td>
+										<%= link_to post_favorites_path(post), method: :delete do %>
+											<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+											<%= post.favorites.count %>
+										<% end %>
+									</td>
+								<% else %>
+									<td>
+										<%= link_to post_favorites_path(post), method: :post do %>
+											<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+											<%= post.favorites.count %>
+										<% end %>
+									</td>
+								<% end %>
+							</td>
+							<td>
+								コメント件数:<%= post.post_comments.count %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>
 			</table>
+			<%= paginate @all, class: "paginate text-right" %>
+		</div>
+
+		<div class="col-md-2">
+			<h3>ジャンル検索</h3>
+			<% @genres.each do |genre| %>
+				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
+			<% end %>
+
+			<p class="text-center"><%= link_to "新規投稿", new_post_path, class: "btn btn-primary new-button" %></p>
 		</div>
 	</div>
 </div>

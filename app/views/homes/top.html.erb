@@ -8,9 +8,7 @@
             but if you don't put your heart into it,<br>
             there's no way you can make something delicious.
         </p>
+        <p><%= link_to "login", new_user_session_path, class: "btn btn-primary" %></p>
+        <p><%= link_to "signup", new_user_registration_path, class: "btn btn-primary" %></p>
     </div>
-</div>
-<div class="container">
-	<%= link_to "login", new_user_session_path %>
-	<%= link_to "signup", new_user_registration_path %>
 </div>

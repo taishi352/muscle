@@ -1,9 +1,66 @@
+<div class="jumbotron mypage">
+	<h1 class="text-center">マイページ</h1>
+</div>
+
 <div class="container">
-	<h1>マイページ</h1>
+
+	<% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
 
 	<div class="row">
+		<div class="col-md-8">
+			<h3>投稿一覧</h3>
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th>タイトル</th>
+						<th>ジャンル</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @posts.each do |post| %>
+						<tr>
+							<td><%= link_to post.title,post %></td>
+							<td><%= post.genre.genre_name %></td>
+							<td>いいね：<%= post.favorites.count %>件</td>
+							<td>コメント:<%= post.post_comments.count %>件</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
 		<div class="col-md-4 text-center">
-			<h3>目標</h3>
+			<%= attachment_image_tag @user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg", class: "img-circle" %>
+			<h4>名前：<%= @user.name %></h4>
+			<p>自己紹介<br><%= @user.introduction %></p>
+			<% if @user.id == current_user.id %>
+				<%= link_to "", edit_user_path(@user.id), class: "btn btn-primary fas fa-user-edit" %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 text-center">
+			<h3 class="text-center">トレーニング達成度チャート</h3>
+			<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result), colors: ["#fbca4d", "#666"], width: "600px", height: "330px" %>
+		</div>
+
+		<div class="col-md-4 text-center">
+			<h3>食事目標達成度チャート</h3>
+			<p>赤:達成　灰:未達成(過去30日分)</p>
+		<%= pie_chart @chart.group(:meal_result).count, legend: false, colors: ["gray", "#ba2636"], width: "350px", height: "300px" %>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-2 text-left">
+
 			<%= form_for(@user) do |f| %>
 				<div class="field">
 					<h4>トレーニング目標</h4>
@@ -26,47 +83,22 @@
 			<% end %>
 		</div>
 
-		<div class="col-md-8 text-right">
-			<h3>食事目標達成度チャート</h3>
-			<span>赤:達成　青:未達成</span>
-			<span>(前月月初〜今日まで)</span>
-		<%= pie_chart @chart.group(:meal_result).count, legend: false %>
+		<div class="col-md-10 text-center">
+			<h3>目標トラッカー</h3>
+			<%= month_calendar events: @scorings do |date, scorings| %>
+		  		<%= date %>
+
+			  <% scorings.each do |scoring| %>
+			    <div>
+			    	<%= link_to edit_scoring_path(scoring.id) do %>
+					    <p class="fas fa-dumbbell">  ★:<%= scoring.exercise_result %>つ</p><br>
+					    <p class="fas fa-utensils">  <%= scoring.meal_result_str %></p>
+			      	<% end %>
+			    </div>
+			  <% end %>
+			<% end %>
 		</div>
+
 	</div>
 
-	<h3>目標トラッカー</h3>
-	<%= month_calendar events: @scorings do |date, scorings| %>
-  		<%= date %>
-
-	  <% scorings.each do |scoring| %>
-	    <div>
-	    	<%= link_to edit_scoring_path(scoring.id) do %>
-			    <p class="fas fa-dumbbell">  ★:<%= scoring.exercise_result %>つ</p><br>
-			    <p class="fas fa-utensils">  <%= scoring.meal_result_str %></p>
-	      	<% end %>
-	    </div>
-	  <% end %>
-	<% end %>
-
-	<h3 class="text-center">トレーニング達成度チャート</h3>
-	<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result) %>
-
-	<h3>投稿一覧</h3>
-	<table class="table table-hover table-inverse">
-		<thead>
-			<tr>
-				<th>タイトル</th>
-				<th>ジャンル</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% @posts.each do |post| %>
-				<tr>
-					<td><%= link_to post.title,post %></td>
-					<td><%= post.genre.genre_name %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
 </div>

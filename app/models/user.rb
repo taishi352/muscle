@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :scorings, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   attachment :profile_image
 

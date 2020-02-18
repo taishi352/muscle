@@ -1,5 +1,27 @@
 <div class="container">
-<h1>採点編集画面</h1>
 
-<%= render 'form', scoring: @scoring %>
+		<h2 class="text-center">採点編集画面</h2>
+
+		<div class="row">
+			<%= form_for(@scoring) do |f| %>
+
+			  <div class="field col-md-6 text-center">
+			    <h4>今日のトレーニングは星いくつ？</h4>
+			    <p><%= f.radio_button :exercise_result, 0 %>：★なし</p>
+			    <p><%= f.radio_button :exercise_result, 1 %>：★ 1つ</p>
+			    <p><%= f.radio_button :exercise_result, 2 %>：★ 2つ</p>
+			    <p><%= f.radio_button :exercise_result, 3 %>：★ 3つ</p>
+			  </div>
+
+			  <div class="field col-md-6 text-center">
+			    <h4>食事目標を達成できたらチェック！</h4>
+			    <p><%= f.check_box :meal_result %></p>
+			  </div>
+		</div>
+			  <div class="actions text-center">
+			    <%= f.submit %>
+			  </div>
+
+			<% end %>
+
 </div>
