@@ -1,39 +1,42 @@
 <div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>新規投稿画面</h1>
 
-	<h1>新規投稿画面</h1>
+			<% if @post.errors.any? %>
+			  <h4>Error:</h4>
+			  <ul>
+			    <% @post.errors.full_messages.each do |message| %>
+			      <li><%= message %></li>
+			    <% end %>
+			  </ul>
+			<% end %>
 
-	<% if @post.errors.any? %>
-	  <h4>Error:</h4>
-	  <ul>
-	    <% @post.errors.full_messages.each do |message| %>
-	      <li><%= message %></li>
-	    <% end %>
-	  </ul>
-	<% end %>
+			<%= form_for(@post) do |f| %>
+				<div class="field">
+					<h4>タイトル</h4>
+					<%= f.text_field :title, class: "title  form-control" %>
+				</div>
 
-	<%= form_for(@post) do |f| %>
-		<div class="field">
-			<%= f.label :title %>
-			<%= f.text_field :title, class: "title" %>
+				<div class="field">
+					<h4>ジャンル</h4>
+					<%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+				</div>
+
+				<div class="field">
+					<h4>画像投稿</h4>
+					<p><%= f.attachment_field :post_image, class: "post_image" %></p>
+				</div>
+
+				<div class="field">
+					<h4>内容</h4>
+					<%= f.text_area :body, rows:'5', class: "body form-control" %>
+				</div>
+
+				<div class="actions">
+					<%= f.submit "投稿する", class: "btn btn-primary" %>
+				</div>
+			<% end %>
 		</div>
-
-		<div class="field">
-			<%= f.label :genre %>
-			<%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
-		</div>
-
-		<div class="field">
-			<%= f.label :image %>
-			<%= f.attachment_field :post_image, class: "post_image" %>
-		</div>
-
-		<div class="field">
-			<%= f.label :body %>
-			<%= f.text_field :body, class: "body" %>
-		</div>
-
-		<div class="actions">
-			<%= f.submit %>
-		</div>
-	<% end %>
+	</div>
 </div>

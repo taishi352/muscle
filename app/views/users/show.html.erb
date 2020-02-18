@@ -39,66 +39,68 @@
 			<h4>名前：<%= @user.name %></h4>
 			<p>自己紹介<br><%= @user.introduction %></p>
 			<% if @user.id == current_user.id %>
-				<%= link_to "", edit_user_path(@user.id), class: "btn btn-primary fas fa-user-edit" %>
+				<%= link_to "プロフィール編集", edit_user_path(@user.id), class: "btn btn-primary" %>
 			<% end %>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-8 text-center">
-			<h3 class="text-center">トレーニング達成度チャート</h3>
-			<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result), colors: ["#fbca4d", "#666"], width: "600px", height: "330px" %>
+	<% if @user.id == current_user.id %>
+		<div class="row">
+			<div class="col-md-8 text-center">
+				<h3 class="text-center">トレーニング達成度チャート</h3>
+				<%= line_chart @chart.group_by_day(:start_time).sum(:exercise_result), colors: ["#fbca4d", "#666"], width: "750px", height: "330px" %>
+			</div>
+
+			<div class="col-md-4 text-center">
+				<h3>食事目標達成度チャート</h3>
+				<p>赤:達成　灰:未達成(過去30日分)</p>
+			<%= pie_chart @chart.group(:meal_result).count, legend: false, colors: ["gray", "#ba2636"], width: "350px", height: "300px" %>
+			</div>
 		</div>
 
-		<div class="col-md-4 text-center">
-			<h3>食事目標達成度チャート</h3>
-			<p>赤:達成　灰:未達成(過去30日分)</p>
-		<%= pie_chart @chart.group(:meal_result).count, legend: false, colors: ["gray", "#ba2636"], width: "350px", height: "300px" %>
+		<div class="row">
+
+			<div class="col-md-2 text-left">
+
+				<%= form_for(@user) do |f| %>
+					<div class="field">
+						<h4>トレーニング目標</h4>
+						<%= f.text_area :exercise_rule, class: "exercise_rule" %>
+					</div>
+
+					<div class="field">
+						<h4>食事目標</h4>
+						<%= f.text_area :meal_rule, class: "meal_rule" %>
+					</div>
+
+					<div class="field">
+						<h4>ペナルティー</h4>
+						<%= f.text_area :penalty, class: "penalty" %>
+					</div>
+
+					<div class="actions">
+						<%= f.submit "目標を変更する",  class: "btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
+
+			<div class="col-md-10 text-center">
+				<h3>目標トラッカー</h3>
+				<%= month_calendar events: @scorings do |date, scorings| %>
+			  		<%= date %>
+
+				  <% scorings.each do |scoring| %>
+				    <div>
+				    	<%= link_to edit_scoring_path(scoring.id) do %>
+						    <p class="fas fa-dumbbell">  ★:<%= scoring.exercise_result %>つ</p><br>
+						    <p class="fas fa-utensils">  <%= scoring.meal_result_str %></p>
+				      	<% end %>
+				    </div>
+				  <% end %>
+				<% end %>
+			</div>
+
 		</div>
-	</div>
-
-	<div class="row">
-
-		<div class="col-md-2 text-left">
-
-			<%= form_for(@user) do |f| %>
-				<div class="field">
-					<h4>トレーニング目標</h4>
-					<%= f.text_area :exercise_rule, class: "exercise_rule" %>
-				</div>
-
-				<div class="field">
-					<h4>食事目標</h4>
-					<%= f.text_area :meal_rule, class: "meal_rule" %>
-				</div>
-
-				<div class="field">
-					<h4>ペナルティー</h4>
-					<%= f.text_area :penalty, class: "penalty" %>
-				</div>
-
-				<div class="actions">
-					<%= f.submit %>
-				</div>
-			<% end %>
-		</div>
-
-		<div class="col-md-10 text-center">
-			<h3>目標トラッカー</h3>
-			<%= month_calendar events: @scorings do |date, scorings| %>
-		  		<%= date %>
-
-			  <% scorings.each do |scoring| %>
-			    <div>
-			    	<%= link_to edit_scoring_path(scoring.id) do %>
-					    <p class="fas fa-dumbbell">  ★:<%= scoring.exercise_result %>つ</p><br>
-					    <p class="fas fa-utensils">  <%= scoring.meal_result_str %></p>
-			      	<% end %>
-			    </div>
-			  <% end %>
-			<% end %>
-		</div>
-
-	</div>
+	<% end %>
 
 </div>
