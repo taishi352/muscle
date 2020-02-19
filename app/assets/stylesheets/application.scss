@@ -21,6 +21,13 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@font-face {
+  font-family: 'tappitsu';
+  src: font-url('g_brushtappitsu_freeR.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 header {
 	color: white;
 	background-color: #ba2636;
@@ -77,5 +84,10 @@ table{
 
 .navbar-header h3 {
 	color: #fbca4d;
+	font-family: tappitsu;
+}
+
+.jumbotron h1 {
+	font-family: tappitsu;
 }
 

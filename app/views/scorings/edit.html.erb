@@ -1,6 +1,6 @@
 <div class="container">
 
-		<h2 class="text-center">採点編集画面</h2>
+		<h2 class="text-center"><%= @scoring.start_time.strftime("%m/%d").to_s %>の採点</h2>
 
 		<div class="row">
 			<%= form_for(@scoring) do |f| %>
