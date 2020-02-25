@@ -21,6 +21,13 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@font-face {
+  font-family: 'tappitsu';
+  src: font-url('g_brushtappitsu_freeR.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 header {
 	color: white;
 	background-color: #ba2636;
@@ -29,9 +36,11 @@ header {
 
 body {
 	margin-top: 40px;
-	background-color: #3f312b;
+	background: image-url('background.jpg');
 	color: black;
 	font-family: "Sawarabi Mincho";;
+	margin-bottom: 150px;
+	margin-bottom: 50px;
 }
 
 .actions {
@@ -77,5 +86,16 @@ table{
 
 .navbar-header h3 {
 	color: #fbca4d;
+	font-family: tappitsu;
+}
+
+.jumbotron {
+	background: image-url('jumbo.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.jumbotron h1 {
+	font-family: tappitsu;
 }
 

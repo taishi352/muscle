@@ -33,7 +33,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
   describe 'アソシエーションのテスト' do
     context 'Genreモデルとの関係' do
       it 'N:1となっている' do
-        expect(Post.reflect_on_association(:gebre).macro).to eq :belongs_to
+        expect(Post.reflect_on_association(:genre).macro).to eq :belongs_to
       end
     end
   end

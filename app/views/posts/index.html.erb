@@ -1,5 +1,5 @@
 <div class="jumbotron">
-	<h1 class="text-center">投稿一覧</h1>
+	<h1 class="text-center">All Posts</h1>
 </div>
 
 <div class="container">
@@ -7,14 +7,16 @@
 	<div class="row">
 
 		<div class="col-md-10">
-			<table class="table table-hover table-inverse">
+			<%= link_to "新規投稿", new_post_path, class: "btn btn-default col-xs-4 col-xs-offset-4" %>
+
+			<table class="table table-hover table-inverse posts">
 				<thead>
 					<tr>
 						<th>ユーザー</th>
 						<th>タイトル</th>
-						<th>ジャンル</th>
-						<th><%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %></th>
-						<<th></th>
+						<th colspan="2">ジャンル</th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -32,7 +34,7 @@
 									<td>
 										<%= link_to post_favorites_path(post), method: :delete do %>
 											<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-											<%= post.favorites.count %>
+											<span  style="color: red;" ><%= post.favorites.count %></span>
 										<% end %>
 									</td>
 								<% else %>
@@ -52,15 +54,39 @@
 				</tbody>
 			</table>
 			<%= paginate @all, class: "paginate text-right" %>
+
+			<div class="media mypage col-xs-10 col-xs-offset-1">
+		        <div class="media-left">
+		            <%= image_tag 'ストレッチ.png', :size =>'90x100' %>
+		        </div>
+
+		        <div class="media-body">
+		        	<p>　トレーニング内容の発信、疑問点のQ&A、イベント開催の案内、ボデイメイク情報の発信など</p>
+			        <p>　ユーザーの皆様のご自由にお使いください</p>
+			        <p>　ここをうまく活用しモチベーションを失わず、継続できるように頑張りましょう！！</p>
+		        </div>
+		    </div>
 		</div>
 
 		<div class="col-md-2">
 			<h3>ジャンル検索</h3>
-			<% @genres.each do |genre| %>
-				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
+
+			<% if user_signed_in? %>
+  				<% if current_user == @user || current_user.admin? %>
+					<p><%= link_to "ジャンル作成", new_genre_path, class: "btn btn-default" %></p>
+				<% end %>
 			<% end %>
 
-			<p class="text-center"></p>
+			<%= link_to "全て" , posts_path %><br>
+			<% @genres.each do |genre| %>
+				<%= link_to genre.genre_name ,"/posts?genre_id=#{genre.id}" %><br>
+				<% if user_signed_in? %>
+  					<% if current_user == @user || current_user.admin? %>
+						<%= link_to "(編集)", edit_genre_path(genre.id) %>
+						<%= link_to "(削除)", genre_path(genre.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %><br>
+					<% end %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>

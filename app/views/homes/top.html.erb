@@ -1,14 +1,16 @@
-<div class="main-visual">
-    <div class="main-visual-content">
-        <h1 class="main-visual-name">
+<div class="inner cover">
+    <div class="cover-content">
+        <h1 class="cover-heading">
             I'LL BE ..
         </h1>
-        <p class="main-visual-text">
-            Ingredients and the techniques of preparation are important in cooking,<br>
-            but if you don't put your heart into it,<br>
-            there's no way you can make something delicious.
+        <p class="lead">
+            運動を始めたい、ダイエットしたいけどできない<br>
+            そういう方達が挫折しないようサポートするサイトです！<br>
+            みんなでいい体を目指しましょう！！
         </p>
-        <p><%= link_to "login", new_user_session_path, class: "btn btn-primary" %></p>
-        <p><%= link_to "signup", new_user_registration_path, class: "btn btn-primary" %></p>
+        <p>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-default col-xs-4 col-xs-offset-4" %><br>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-default  col-xs-4 col-xs-offset-4" %>
+        </p>
     </div>
 </div>

@@ -25,10 +25,10 @@ user_index {
   	background-color: #ba2636;
   }
   .past {
-  	background-color: #3f312b;
+  	background-color: black;
   }
   .future {
-  	background-color: #3f312b;
+  	background-color: black;
   }
 
   .start-date {}
@@ -44,20 +44,25 @@ user_index {
   .has-events {}
 }
 
-.media {
+.users {
 	margin: 30px 0;
 	padding: 5px;
 	background-color: #fbca4d;
   border-radius: 10px;
 }
 
-.mypage {
-  background: image-url('protain.jpg');
-  background-size: cover;
-  background-position: center 50%;
-}
-
 .calendar-title {
   color: white;
   font-size: 25px;
+}
+
+.mypage {
+  padding: 5px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.media-body p {
+  color: black;
 }

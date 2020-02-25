@@ -10,12 +10,14 @@ RSpec.describe 'Genreモデルのテスト', type: :model do
         expect(genre.valid?).to eq false;
       end
     end
-    describe 'アソシエーションのテスト' do
+  end
+
+  describe 'アソシエーションのテスト' do
     context 'Genreモデルとの関係' do
       it '1:Nとなっている' do
         expect(Genre.reflect_on_association(:posts).macro).to eq :has_many
       end
     end
   end
-  end
+
 end
