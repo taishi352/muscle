@@ -4,7 +4,7 @@
 			<h1>新規投稿画面</h1>
 
 			<% if @post.errors.any? %>
-			  <h4>Error:</h4>
+			  <h4>エラー:</h4>
 			  <ul>
 			    <% @post.errors.full_messages.each do |message| %>
 			      <li><%= message %></li>
@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="actions">
-					<%= f.submit "投稿する", class: "btn btn-primary" %>
+					<%= f.submit "投稿する", class: "btn btn-default" %>
 				</div>
 			<% end %>
 		</div>

@@ -8,7 +8,7 @@
       <p><%= flash[:notice] %></p>
     <% end %>
 
-	<div class="row">
+    <div class="row">
 		<div class="col-md-8">
 			<h3>投稿一覧</h3>
 			<table class="table table-hover table-inverse">
@@ -32,7 +32,7 @@
 					<% end %>
 				</tbody>
 			</table>
-			<%= link_to "新規投稿", new_post_path, class: "btn btn-primary col-xs-6 col-xs-offset-3" %>
+			<%= link_to "新規投稿", new_post_path, class: "btn btn-default col-xs-6 col-xs-offset-3" %>
 		</div>
 
 		<div class="col-md-4 text-center">
@@ -40,7 +40,7 @@
 			<h4>名前：<%= @user.name %></h4>
 			<p>自己紹介<br><%= @user.introduction %></p>
 			<% if @user.id == current_user.id %>
-				<%= link_to "プロフィール編集", edit_user_path(@user.id), class: "btn btn-primary" %>
+				<%= link_to "プロフィール編集", edit_user_path(@user.id), class: "btn btn-default" %>
 			<% end %>
 		</div>
 	</div>
@@ -58,6 +58,23 @@
 			<%= pie_chart @chart.group(:meal_result).count, legend: false, colors: ["gray", "#ba2636"], width: "350px", height: "300px" %>
 			</div>
 		</div>
+
+		<div class="media mypage">
+	        <div class="media-left">
+	            <%= image_tag 'teacher.png', :size =>'180x200' %>
+	        </div>
+
+	        <div class="media-body">
+	        	<p>まずはトレーニングの目標を立てましょう</p>
+		        <p>　(例)トレーニング目標:土曜日はジムでトレーニングする、休日はランニングを30分する など</p>
+		        <p>　(例)食事目標:1日に1回はサラダを食べる、夕食は白米を食べない など</p>
+		        <p>目標を立てるコツは、最初から難しい目標を立てず少しの努力で達成できるものにしましょう</p>
+		        <p>※最初から難しい目標を立ててもどうせ続きません...</p>
+		        <p>無理なく達成できるようになったら、さらにもう少し難しいものに目標を再設定しましょう</p>
+		        <p>また目標達成できなかったときのためのペナルティーを設定し、トレーニング・食事目標をおろそかにしないようにしましょう</p>
+		        <p>　(例)ペナルティー:1週間アルコール禁止、目標不達成のたびに500円貯金をする　など</p>
+	        </div>
+	    </div>
 
 		<div class="row">
 
@@ -80,7 +97,7 @@
 					</div>
 
 					<div class="actions">
-						<%= f.submit "目標を変更する",  class: "btn btn-primary" %>
+						<%= f.submit "目標を変更する",  class: "btn btn-default" %>
 					</div>
 				<% end %>
 			</div>

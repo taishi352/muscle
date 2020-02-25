@@ -11,40 +11,40 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[email]', with: Faker::Internet.email
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
-        click_button 'Sign up'
+        click_button '新規登録'
 
-        expect(page).to have_content 'successfully'
+        expect(page).to have_content '登録'
       end
       it '新規登録に失敗する' do
         fill_in 'user[name]', with: ''
         fill_in 'user[email]', with: ''
         fill_in 'user[password]', with: ''
         fill_in 'user[password_confirmation]', with: ''
-        click_button 'Sign up'
+        click_button '新規登録'
 
-        expect(page).to have_content 'error'
+        expect(page).to have_content 'エラー'
       end
     end
   end
   describe 'ユーザーログイン' do
-    let(:user) { create(:user) }
+    let(:user) { FactoryBot.create(:user) }
     before do
       visit new_user_session_path
     end
     context 'ログイン画面に遷移' do
       let(:test_user) { user }
       it 'ログインに成功する' do
-        fill_in 'user[name]', with: test_user.name
+        fill_in 'user[email]', with: test_user.email
         fill_in 'user[password]', with: test_user.password
-        click_button 'Log in'
+        click_button 'ログイン'
 
-        expect(page).to have_content 'successfully'
+        expect(page).to have_content 'ログイン'
       end
 
       it 'ログインに失敗する' do
-        fill_in 'user[name]', with: ''
+        fill_in 'user[email]', with: ''
         fill_in 'user[password]', with: ''
-        click_button 'Log in'
+        click_button 'ログイン'
 
         expect(current_path).to eq(new_user_session_path)
       end
@@ -53,19 +53,20 @@ describe 'ユーザー認証のテスト' do
 end
 
 describe 'ユーザーのテスト' do
-  let(:user) { create(:user) }
-  let!(:test_user2) { create(:user) }
-  let!(:post) { create(:post, user: user) }
+  let(:user) { FactoryBot.create(:user) }
+  let!(:test_user2) { FactoryBot.create(:user) }
+  let!(:genre) { FactoryBot.create(:genre) }
+  let!(:post) { FactoryBot.create(:post, user: user, genre: genre) }
   before do
     visit new_user_session_path
-    fill_in 'user[name]', with: user.name
+    fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
-    click_button 'Log in'
+    click_button 'ログイン'
   end
-  describe 'サイドバーのテスト' do
+  describe 'マイページのテスト' do
     context '表示の確認' do
-      it 'User infoと表示される' do
-        expect(page).to have_content('User info')
+      it 'My Pageと表示される' do
+        expect(page).to have_content('My Page')
       end
       it '画像が表示される' do
         expect(page).to have_css('img.profile_image')
@@ -101,8 +102,8 @@ describe 'ユーザーのテスト' do
       before do
         visit edit_user_path(user)
       end
-      it 'User infoと表示される' do
-        expect(page).to have_content('User info')
+      it 'ユーザー編集と表示される' do
+        expect(page).to have_content('ユーザー編集')
       end
       it '名前編集フォームに自分の名前が表示される' do
         expect(page).to have_field 'user[name]', with: user.name
@@ -114,14 +115,14 @@ describe 'ユーザーのテスト' do
         expect(page).to have_field 'user[introduction]', with: user.introduction
       end
       it '編集に成功する' do
-        click_button 'Update User'
-        expect(page).to have_content 'successfully'
+        click_button '変更する'
+        expect(page).to have_content '変更しました'
         expect(current_path).to eq('/users/' + user.id.to_s)
       end
       it '編集に失敗する' do
         fill_in 'user[name]', with: ''
-        click_button 'Update User'
-        expect(page).to have_content 'error'
+        click_button '変更する'
+        expect(page).to have_content 'エラー'
         expect(current_path).to eq('/users/' + user.id.to_s)
       end
     end
@@ -132,19 +133,12 @@ describe 'ユーザーのテスト' do
       visit users_path
     end
     context '表示の確認' do
-      it 'Usersと表示される' do
-        expect(page).to have_content('Users')
-      end
-      it '自分と他の人の画像が表示される' do
-        expect(all('img').size).to eq(3)
+      it 'All Usersと表示される' do
+        expect(page).to have_content('All Users')
       end
       it '自分と他の人の名前が表示される' do
         expect(page).to have_content user.name
         expect(page).to have_content test_user2.name
-      end
-      it 'showリンクが表示される' do
-        expect(page).to have_link 'Show', href: user_path(user)
-        expect(page).to have_link 'Show', href: user_path(test_user2)
       end
     end
   end
@@ -158,9 +152,6 @@ describe 'ユーザーのテスト' do
       end
       it '投稿一覧のtitleのリンク先が正しい' do
         expect(page).to have_link post.title, href: post_path(post)
-      end
-      it '投稿一覧にopinionが表示される' do
-        expect(page).to have_content(post.body)
       end
     end
   end

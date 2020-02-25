@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron users">
 	<h1 class="text-center">All Users</h1>
 </div>
 
@@ -7,7 +7,7 @@
 	<div class="row">
 		<% @users.each do |user| %>
 			<div class="col-md-4">
-				<div class="media">
+				<div class="media users">
 					<div class="pull-left"><%= attachment_image_tag user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg", class: "img-circle" %></div>
 					<div class="media-body">
 						<h4 class="media-heading"><%=link_to "名前：#{user.name}", user %></h4>

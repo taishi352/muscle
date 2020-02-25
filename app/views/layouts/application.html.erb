@@ -25,15 +25,15 @@
           <ul class="nav navbar-nav navbar-left">
             <!--if文でサインインとアウト時の表示を変更-->
             <% if user_signed_in? %>
-              <li><%= link_to ' My Page', user_path(current_user) %></li>
-              <li><%= link_to ' All Users', users_path %></li>
-              <li><%= link_to ' All Posts', posts_path %></li>
-              <li><%= link_to ' Logout', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to ' マイページ', user_path(current_user), :style=>"color:black;" %></li>
+              <li><%= link_to ' ユーザー一覧', users_path, :style=>"color:black;" %></li>
+              <li><%= link_to ' 投稿一覧', posts_path, :style=>"color:black;" %></li>
+              <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, :style=>"color:black;" %></li>
             <% else %>
-              <li><%= link_to ' Top', root_path %></li>
-              <li><%= link_to ' About', homes_about_path %></li>
-              <li><%= link_to ' Signup', new_user_registration_path %></li>
-              <li><%= link_to ' Login', new_user_session_path %></li>
+              <li><%= link_to ' トップ', root_path, :style=>"color:black;" %></li>
+              <li><%= link_to ' アバウト', homes_about_path, :style=>"color:black;" %></li>
+              <li><%= link_to ' 新規登録', new_user_registration_path, :style=>"color:black;" %></li>
+              <li><%= link_to ' ログイン', new_user_session_path, :style=>"color:black;" %></li>
             <% end %>
           </ul>
         </nav>
