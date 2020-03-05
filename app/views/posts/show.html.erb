@@ -2,7 +2,7 @@
 	<h1 class="text-center">Detail</h1>
 </div>
 
-<div class="container">
+<div class="container postshow">
 
 	<% if flash[:notice] %>
       <p><%= flash[:notice] %></p>
@@ -59,7 +59,7 @@
 	</table>
 	<!-- コメント入力フォーム -->
 	<%= form_for [@post, @post_comment] do |f| %>
-		<%= f.text_area :comment, rows:'3', class: "form-control" %>
-		<%= f.submit "送信する",  class: "btn btn-default" %>
+		<p><%= f.text_area :comment, rows:'3', class: "form-control" %></p>
+		<p><%= f.submit "送信する",  class: "btn btn-default" %></p>
 	<% end %>
 </div>
