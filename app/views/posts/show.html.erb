@@ -49,9 +49,9 @@
 			<td><%= post_comment.comment %></td>
 			<td>
 				<% if post_comment.user.id == current_user.id %>
-					<%= link_to "Destroy",post_post_comments_path(@post), method: :delete, class: "btn-sm btn-danger" %>
+					<%= link_to "削除",post_post_comments_path(@post), method: :delete, class: "btn-sm btn-danger" %>
   				<% elsif current_user == @user || current_user.admin? %>
-  						<%= link_to "Destroy",post_post_comments_path(@post), method: :delete, class: "btn-sm btn-danger" %>
+  						<%= link_to "削除",post_post_comments_path(@post), method: :delete, class: "btn-sm btn-danger" %>
 				<% end %>
 			</td>
 		</tr>
