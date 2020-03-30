@@ -1,0 +1,26 @@
+<td>
+  <%= attachment_image_tag post.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg", class: "img-circle" %><br>
+  <%= post.user.name %>
+</td>
+<td><%= link_to post.title, post %></td>
+<td><%= post.genre.genre_name %></td>
+<td>
+  <% if post.favorited_by?(current_user) %>
+    <td>
+      <%= link_to post_favorites_path(post, redirect_id: 0), method: :delete, remote: true do %>
+        <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+        <span  style="color: red;" ><%= post.favorites.count %></span>
+      <% end %>
+    </td>
+  <% else %>
+    <td>
+      <%= link_to post_favorites_path(post, redirect_id: 0), method: :post, remote: true do %>
+        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        <%= post.favorites.count %>
+      <% end %>
+    </td>
+  <% end %>
+</td>
+<td>
+  コメント件数:<%= post.post_comments.count %>
+</td>
