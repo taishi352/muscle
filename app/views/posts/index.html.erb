@@ -23,7 +23,7 @@
 				<tbody>
 					<% @posts.each do |post| %>
 						<tr class="post_<%= post.id %>">
-							<%= render 'detail', post: post %>
+							<%= render 'post', post: post %>
 						</tr>
 					<% end %>
 				</tbody>

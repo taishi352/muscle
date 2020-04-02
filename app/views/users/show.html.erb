@@ -42,6 +42,11 @@
 			<% if @user.id == current_user.id %>
 				<%= link_to "プロフィール編集", edit_user_path(@user.id), class: "btn btn-default" %>
 			<% end %>
+			<div class="follow-people">
+				<%= link_to " [フォロー数:#{@user.followings.count}人] ", follows_user_path(@user) %>
+				<%= link_to " [フォロワー数:#{@user.followers.count}人] ", followers_user_path(@user) %>
+			</div>
+			<%= render 'relationships/follow_button', user: @user %>
 		</div>
 	</div>
 

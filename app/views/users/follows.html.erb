@@ -1,0 +1,29 @@
+<div class="jumbotron mypage">
+  <h1 class="text-center">フォロー</h1>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>名前</th>
+        <th colspan="2">自己紹介</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user.followings.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class: "img-circle" %></td>
+        <td><%= link_to "#{user.name}", user, class: "user_#{user.id}" %></td>
+        <td colspan="2" ><%= user.introduction %></td>
+        <td>
+          <%= render 'relationships/follow_button', user: user %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
