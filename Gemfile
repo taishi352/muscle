@@ -78,7 +78,7 @@ gem 'jquery-rails'
 gem 'simple_calendar', '~> 2.0' #カレンダー機能
 gem 'font-awesome-sass', '~> 5.4.1'
 
-gem 'kaminari','~> 1.1.1'
+gem 'kaminari','~> 1.2.1'
 
 gem 'dotenv-rails'
 group :production do
